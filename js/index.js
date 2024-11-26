@@ -170,7 +170,7 @@ orderInfoBtn.addEventListener('click',function(e){
         return;
     }
     if(customerName == "" || customerPhone == "" || customerEmail == "" || customerAddress == "" || customerTradeWay == ""){
-        alert('請輸出訂單資訊');
+        alert('請輸入完整資訊');
         return;
     }
 
