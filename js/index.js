@@ -46,6 +46,7 @@ function renderProduct(){
         str += combineProductHTMLItem(item)
     })
     productList.innerHTML = str;
+    productSelect.value = "全部";
 }
 
 //  下拉選單篩選
@@ -53,8 +54,8 @@ function renderProduct(){
 productSelect.addEventListener('change',function(e){
     const category = e.target.value;
     if(category == "全部"){
-        console.log("all")
-        renderProduct()
+        renderProduct();
+        return;
     }
     let str = "";
     productData.forEach(function(item){
