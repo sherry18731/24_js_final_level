@@ -1,4 +1,3 @@
-
 let productData = [];
 let cartData = [];
 
@@ -21,6 +20,9 @@ function getProductList() {
     .then(function(res){
         productData = res.data.products;
         renderProduct()
+    })
+    .catch(function(err) {
+        console.log(err);
     })
 }
 
@@ -157,14 +159,15 @@ discardAllBtn.addEventListener('click',function(e){
 // 產生訂單功能
 const orderInfoBtn = document.querySelector(".orderInfo-btn");
 
-const customerName = document.querySelector("#customerName").value;
-const customerPhone = document.querySelector("#customerPhone").value;
-const customerEmail = document.querySelector("#customerEmail").value;
-const customerAddress = document.querySelector("#customerAddress").value;
-const customerTradeWay = document.querySelector("#tradeWay").value;
-
 orderInfoBtn.addEventListener('click',function(e){
     e.preventDefault();
+
+    const customerName = document.querySelector("#customerName").value;
+    const customerPhone = document.querySelector("#customerPhone").value;
+    const customerEmail = document.querySelector("#customerEmail").value;
+    const customerAddress = document.querySelector("#customerAddress").value;
+    const customerTradeWay = document.querySelector("#tradeWay").value;
+
     if(cartData.length == 0){
         alert('請加入購物車');
         return;
@@ -187,11 +190,7 @@ orderInfoBtn.addEventListener('click',function(e){
       })
     .then(function(res){
         alert('已送出訂單');
-        document.querySelector("#customerName").value = "";
-        document.querySelector("#customerPhone").value = "";
-        document.querySelector("#customerEmail").value = "";
-        document.querySelector("#customerAddress").value = "";
-        document.querySelector("#tradeWay").value = "ATM";
-        getCartList()
+        document.querySelector(".orderInfo-form").reset();
+        getCartList();
     })
 })
